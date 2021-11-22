@@ -3,10 +3,6 @@
 {% block title %}Contact{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/contact.css') }}">
-{% endblock %}
-
-{% block body %}
     <div>
         <h1>Hello {{ name }}! ✅</h1>
 
@@ -15,8 +11,21 @@
             <input type="submit" value="Envoyer">
         </form>
 
-        {% if city is defined %}
-            <p>Vous essayez de contacter {{ city }}</p>
-        {% endif %}
+        <div class="contact-container">
+
+            <span>
+                <span class="title">Hello</span>
+            </span>
+            {% if city is defined %}
+                <p>Vous essayez de contacter {{ city }}</p>
+            {% endif %}
+
+        </div>
+
     </div>
+    {{ encore_entry_link_tags('contact') }}
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('styles/contact.css') }}">
 {% endblock %}
