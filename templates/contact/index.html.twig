@@ -1,31 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact{% endblock %}
-
-{% block stylesheets %}
-    <div>
-        <h1>Hello {{ name }}! ✅</h1>
-
-        <form action="">
-            <input type="text" name="name" id="" value="{{ name }}" aria-label="Nom">
-            <input type="submit" value="Envoyer">
-        </form>
-
-        <div class="contact-container">
-
-            <span>
-                <span class="title">Hello</span>
-            </span>
-            {% if city is defined %}
-                <p>Vous essayez de contacter {{ city }}</p>
-            {% endif %}
-
-        </div>
-
-    </div>
-    {{ encore_entry_link_tags('contact') }}
-{% endblock %}
+{% block title %}Hello ContactController!{% endblock %}
 
 {% block body %}
-    <link rel="stylesheet" href="{{ asset('styles/contact.css') }}">
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    {% if contacts is defined %}
+
+            <p>Mes demandes de contacts ({{ contacts|length }})</p>
+            {% for contact in contacts %}
+                <li>
+                <a href="{{ path("contactId",{id:contact.id}) }}"> {{ contact.nom }} {{ contact.prenom }}</a>
+                </li>
+            {% endfor %}
+
+    {% endif %}
+
+    {% if contact is defined %}
+        <p>Id: {{ contact.id }}</p>
+        <p>Nom : {{ contact.name }}</p>
+        <p>Prénom : {{ contact.firstName }}</p>
+        <p>Email : {{ contact.email }}</p>
+        <p>Sujet : {{ contact.sujet }}</p>
+        <p>Message : {{ contact.message }}</p>
+        <p>Newsletter : {{ contact.newsletter }}</p>
+    {% endif %}
+
 {% endblock %}
